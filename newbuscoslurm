@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#SBATCH --partition=shared
+#SBATCH -J pitch_busco
+#SBATCH --ntasks=24
+#SBATCH --output /mnt/lustre/macmaneslab/klombardo/honorsthesis/logs/pitch_busco.log
+
+source ~/.bash_profile
+
+export BUSCO_CONFIG_FILE=/mnt/lustre/macmaneslab/klombardo/honorsthesis/echparatest/config.ini
+
+cd /mnt/lustre/macmaneslab/klombardo/honorsthesis/finalpitchertest
+
+cp /mnt/lustre/macmaneslab/klombardo/config.ini .
+
+/mnt/lustre/software/linuxbrew/colsa/bin/busco \
+-i DRR053698.orthomerged.fasta \
+-m tran --cpu 16 -l eukaryota_odb9 -o run_pitch_busco_ortho
+
+#python /mnt/lustre/software/anaconda/colsa/envs/orp-20180404/local/src/Oyster_River_Protocol/software/busco/scripts/run_BUSCO.p$
+#-i DRR053698.orthomerged.fasta \
+#-m tran --cpu 16 -l eukaryota_odb9 -o run_pitch_busco_ortho
+
+#run_BUSCO.py -m tran --cpu 16 \
+#-o am_busco_K55 -i am_55_transcripts.fasta
+
+#run_BUSCO.py -m tran --cpu 16 \
+#-o am_busco_K75 -i am_75_transcripts.fasta
+
+#run_BUSCO.py -m tran --cpu 16 \
+#-o am_busco_ortho -i am_out1.orthomerged.fasta
+
