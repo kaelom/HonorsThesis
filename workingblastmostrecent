@@ -77,16 +77,6 @@ if ".gz" in args.o:
 print("ok")
 
 for eachone in args.f:
-    if ".gz" in eachone:
-        print("Please unzip discreet fasta files in args.f, then run again.")
-        quit
-if ".gz" in args.o:
-    print("Please unzip orthoerged file, then run again.")
-    quit
-
-print("ok")
-
-for eachone in args.f:
     name=eachone+".blastout"
     print(name)
     blastxcommand=["blastx","-query",eachone,"-db","uniprot_sprot.fasta","-outfmt","6","-num_threads 24","-out",name,"-max_targe$
